@@ -1,0 +1,2348 @@
+[33mcommit d8996cbbf513633df5d1ef0e1a36939a9102d296[m[33m ([m[1;36mHEAD -> [m[1;32mthirteen[m[33m)[m
+Author: Joker-V2 <nipinna0@gmail.com>
+Date:   Sun Feb 26 05:36:21 2023 +0100
+
+    Revert "veux: overlay: Set default hotspot SSID based on ro.boot.board_id"
+    
+    This reverts commit e0a476d307afffb3dffbf3dc235bb6e43f95a038.
+
+[33mcommit 75482a48a0cac331625dec390b8f922b8bb008e3[m[33m ([m[1;31morigin/thirteen[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Joker-V2 <nipinna0@gmail.com>
+Date:   Sun Feb 26 05:34:53 2023 +0100
+
+    veux: SuperiorOS bringup
+    
+    - Initial changes for superioros
+    - Cleanup redundant PE specific flags
+
+[33mcommit 5053729cc9b12b7edb9443ff1b1090e9c87b7289[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Fri Jan 13 09:21:29 2023 +0700
+
+    veux: sepolicy: Label goodix debug fingerprint properties
+    
+    * W libc    : Access denied finding property "gf.debug.dump_talog_data"
+    * W fingerprint@2.3: type=1400 audit(0.0:689): avc: denied { read } for name="u:object_r:default_prop:s0" dev="tmpfs" ino=1797 scontext=u:r:hal_fingerprint_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit ab4cbc0cb596ebe70237dedf748fa18eb0c592ec[m
+Author: David Sehr <sehr@google.com>
+Date:   Thu Jul 14 22:19:20 2022 +0530
+
+    veux: Use dex2oat64
+    
+    Enable dex2oat64 usage on device
+    
+    Bug: 153380900
+    Test: boot and install an application.
+    Change-Id: Ifff726eb2f8bd315a42c02bdca9ff10cf027a06c
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit ca1a0874961c1052e67e292036b759708c8a3958[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Thu Jan 26 16:32:24 2023 +0700
+
+    veux: Update blobs from latest global
+    
+    * Blobs extracted from: Redmi/veux_global/veux:12/SKQ1.211006.001/V13.0.5.0.SKCMIXM:user/release-keys
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit c81c876f086f18a8ec425729f8b7d61fa27d6ff5[m
+Author: OnlyTomInSecond <q2781273965@gmail.com>
+Date:   Tue Nov 1 16:33:43 2022 +0800
+
+    veux: Set block_binder_thread_on_incoming_calls prop
+    
+    In order to fix incoming calls.
+    
+    Change-Id: Id474622f3e08b88f1d099e3d6507fd1d84de4d88
+    Signed-off-by: Chenyang Zhong <zhongcy95@gmail.com>
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit f272fe85bd48a323f1c53d79046ac2133afc25e3[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Wed Jan 25 16:13:51 2023 +0700
+
+    veux: overlay: Keep raw value for the carrier config overlay
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 6c6b63eb1495327566146c7bb92d14af12018074[m
+Author: razorloves <razorloves@gmail.com>
+Date:   Mon Apr 27 21:11:03 2020 -0500
+
+    veux: Set auto brightness mode on by default
+    
+    Change-Id: I5cb8e3db27849ebd90459a6d70e053158c05bcc9
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit a6e458576ccf522dd775792e6d344209018aab5e[m
+Author: ririxidev <mail@ririxi.dev>
+Date:   Mon Dec 20 19:29:33 2021 +0100
+
+    veux: wifi: Switch gEnablePowerSaveOffload to 5
+    
+    This should improve VoIP calls performance.
+    Reference: https://android.googlesource.com/device/google/marlin/+/android-7.1.0_r4%5E%21/
+    
+    Change-Id: Id947f330d516f507b8eff543ffb154e90e1206a2
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 7d9735c04cef26b86c4a08a12b40a9a984c5614c[m
+Author: TheCrazyLex <alex.naidis@linux.com>
+Date:   Thu Dec 9 05:32:49 2021 +0200
+
+    veux: wifi: Smarter decisions on whether to use 2/5Ghz AP
+    
+     * Implement a smarter system on whether to connect to the provided 2Ghz or 5Ghz network.
+    
+    Change-Id: I4f8363c712d07c64b2bad25538474003a56976b3
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit d3855cb489e2ecd8cfd60d63c0e9a7d64a5bd902[m
+Author: Abhinav Kumar <abhikuma@codeaurora.org>
+Date:   Tue Nov 5 11:57:54 2019 +0530
+
+    veux: wifi: Remove entry for gEnableNUDTracking
+    
+    Currently Min, Max and default values of gEnableNUDTracking in
+    code are:
+    Min: 0 (Driver will not track the NUD failures, and ignore the same)
+    Max: 2 (Driver will track the NUD failures and if honoured will roam
+            away from the connected BSSID to a new BSSID to retain the
+            data connectivity).
+    Default: 2
+    
+    In order to enable NUD tracking after NUD failure by default,
+    remove entry for gEnableNUDTracking from ini file.
+    
+    Change-Id: Ie8ed6d12f373891d11727b1f903825a7fc145750
+    CRs-Fixed: 2559325
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 554a473bffe8b1ac1665d798029ccbbe7a6dfc4f[m
+Author: kerneltoast <sultan@kerneltoast.com>
+Date:   Wed Jan 20 10:42:31 2021 +0000
+
+    veux: wifi: Relax WiFi re-association RSSI thresholds
+    
+    Signed-off-by: DarkAngelGR <asavvo01@gmail.com>
+    Change-Id: I90e02a27c54230c6b316aca75ce34c8c621a76e5
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 8dd0e14a786dd9bcfd3b2449aec0e43bb8027712[m
+Author: Luk1337 <priv.luk@gmail.com>
+Date:   Wed Jan 20 10:38:30 2021 +0000
+
+    veux: wifi: Disable RX wakelock feature
+    
+    Signed-off-by: DarkAngelGR <asavvo01@gmail.com>
+    Change-Id: I9f9327905007f91cd9c39c589b723609f595b9e5
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit a2135be749914930b8367660617e4414959ddc31[m
+Author: TheCrazyLex <alex.naidis@linux.com>
+Date:   Thu Oct 29 12:32:39 2020 +0100
+
+    veux: wifi: Enable QPower and Deep sleep at the same time
+    
+    * This enables Deep Sleep mode, additionally to QPower
+    * With this configuration, QPower manages the new Deep sleep mode
+     -> Leads to amazing power savings
+    
+    Signed-off-by: DarkAngelGR <asavvo01@gmail.com>
+    Change-Id: Ie7b8bec94da2707e5ae507682169d0ad26b99163
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit d5d9eb56fb7446b559f3ad1d113f8ec05e1cbbf9[m
+Author: Roshan Pius <rpius@google.com>
+Date:   Sun Dec 27 19:49:34 2020 +0100
+
+    veux: wifi: Increase max bss count
+    
+    QCOM's driver can support a max of 512 scan results. Ensure that
+    wpa_supplicant is in sync with that number.
+    
+    Bug: 74724482
+    Test: Device boots up and connects to wifi networks.
+    
+    Signed-off-by: xNombre <kartapolska@gmail.com>
+    Signed-off-by: Marco Zanin <mrczn.bb@gmail.com>
+    Change-Id: I7cc7f0f604a0a16036080256e672d0b3127840bc
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit eb39d98a2a7286c71c62249ac506a78a7646d3e2[m
+Author: Ecco Park <eccopark@google.com>
+Date:   Wed Dec 22 18:18:52 2021 +0100
+
+    veux: wifi: Add parameters for Hotspot 2.0
+    Those parameters need to set for Hotspot 2.0 network
+    
+    interworking=1 : Enable Interworking
+    hs20=1: Enable Hotspot 2.0
+    auto_interworking=0 : Do not automatically go through Interworking
+                          network selection in wpa_supplicant
+    Bug: 118633353
+    Test: live test with Passpoint AP
+    Signed-off-by: Ecco Park <eccopark@google.com>
+    
+    Change-Id: I04e77be3d008d012690d4f4185a4c80d9b660df2
+    Signed-off-by: PainKiller3 <ninadpatil100@gmail.com>
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit e06bbee953ed381c5aedca000df14680e421e1c1[m
+Author: PainKiller3 <ninadpatil100@gmail.com>
+Date:   Wed Dec 22 18:20:14 2021 +0100
+
+    veux: wifi: No BSS flush for 2018 devices
+    Bug: 73301881
+    Test: Verify that the connected MAC randomization ~3 seconds delay problem is gone
+    
+    Change-Id: I73dbeb9e9d0e740883c81384f3fee9b074292cd2
+    Signed-off-by: PainKiller3 <ninadpatil100@gmail.com>
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 4e2c4fab8a579b3af4d4193065fbb0d29e2e96ad[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Sat May 28 10:29:35 2022 +0200
+
+    veux: Stop explicitely building netutils-wrapper-1.0
+    
+    * Built by default
+    
+    Change-Id: Id6666535bb8d0b84d2d0a8d19411fafa49df3d68
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 8555e289ac793ac560dc4227e342a9ba0e1a1a98[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Thu May 5 00:24:47 2022 +0200
+
+    veux: Build mtdservice interface lib from source
+    
+    Change-Id: Ie739f283c4be1b77d57aaee1941ed46957da1d1a
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit cc66242b2b5da147a6fb647f74cd8a040a1dddd1[m
+Author: Bruno Martins <bgcngm@gmail.com>
+Date:   Mon May 2 14:06:56 2022 +0100
+
+    veux: Switch to source-built mlipay interface
+    
+    Change-Id: I7daaaffd9fe7a870e42c1d882b52dc93b3231120
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 1fd6bbfea6e3391336137c5f342d7d11409470a5[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Thu Apr 14 01:48:37 2022 +0200
+
+    veux: Move to common IFAAService
+    
+    Change-Id: I71bfdacc4626d75d56aa12ec384f0f116d6d6ff2
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit c125101c02bcf3b2ef5f51826e623e8b6c263f43[m
+Author: althafvly <althafvly@gmail.com>
+Date:   Sat Feb 26 22:16:30 2022 +0530
+
+    veux: Set BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE
+    
+    Change-Id: I108504e650895ed62dd54f30d6c53f9d16baa5a3
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 1ddb8d8cdcc0b6b15e77652bd375a10e3dd8900a[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Mon Jan 23 00:07:59 2023 +0700
+
+    veux: sepolicy: Label more camera props
+    
+    * W libc    : Access denied finding property "ro.camera.res.fmq.size"
+      W libc    : Unable to set property "vendor.camera.sensor.rearMain.fuseID" to "sunn001206141BC64DB800000000000000000000000000000000000000000000": error code: 0x18
+      W libc    : Unable to set property "vendor.camera.sensor.rearMain.fuseSnID" to "": error code: 0x18
+      W libc    : Unable to set property "vendor.camera.sensor.frontMain.fuseID" to "sunn00321F160A011A1E0F1C0404080001252B81000000000000000000000000": error code: 0x18
+      W libc    : Unable to set property "vendor.camera.sensor.frontMain.fuseSnID" to "": error code: 0x18
+      W libc    : Unable to set property "vendor.camera.sensor.rearMacro.fuseID" to "ofil00220F1A4230373235394130000000000000000000000000000000000000": error code: 0x18
+      W libc    : Unable to set property "vendor.camera.sensor.rearMacro.fuseSnID" to "": error code: 0x18
+      W libc    : Unable to set property "vendor.camera.sensor.rearUltra.fuseID" to "aaca002217203553320202110E0B620000000000000000000000000000000000": error code: 0x18
+      W libc    : Unable to set property "vendor.camera.sensor.rearUltra.fuseSnID" to "": error code: 0x18
+      W provider@2.4-se: type=1400 audit(0.0:153): avc: denied { read } for name="u:object_r:default_prop:s0" dev="tmpfs" ino=11118 scontext=u:r:hal_camera_default:s0 tcontext=u:object_r:default_prop:s0 tclass=file permissive=0
+      W /system/bin/init: type=1107 audit(0.0:144): uid=0 auid=4294967295 ses=4294967295 subj=u:r:init:s0 msg='avc: denied { set } for property=vendor.camera.sensor.rearMain.fuseID pid=9788 uid=1047 gid=1005 scontext=u:r:hal_camera_default:s0 tcontext=u:object_r:vendor_default_prop:s0 tclass=property_service permissive=0'
+      W /system/bin/init: type=1107 audit(0.0:145): uid=0 auid=4294967295 ses=4294967295 subj=u:r:init:s0 msg='avc: denied { set } for property=vendor.camera.sensor.rearMain.fuseSnID pid=9788 uid=1047 gid=1005 scontext=u:r:hal_camera_default:s0 tcontext=u:object_r:vendor_default_prop:s0 tclass=property_service permissive=0'
+      W /system/bin/init: type=1107 audit(0.0:146): uid=0 auid=4294967295 ses=4294967295 subj=u:r:init:s0 msg='avc: denied { set } for property=vendor.camera.sensor.frontMain.fuseID pid=9788 uid=1047 gid=1005 scontext=u:r:hal_camera_default:s0 tcontext=u:object_r:vendor_default_prop:s0 tclass=property_service permissive=0'
+      W /system/bin/init: type=1107 audit(0.0:147): uid=0 auid=4294967295 ses=4294967295 subj=u:r:init:s0 msg='avc: denied { set } for property=vendor.camera.sensor.frontMain.fuseSnID pid=9788 uid=1047 gid=1005 scontext=u:r:hal_camera_default:s0 tcontext=u:object_r:vendor_default_prop:s0 tclass=property_service permissive=0'
+      W /system/bin/init: type=1107 audit(0.0:148): uid=0 auid=4294967295 ses=4294967295 subj=u:r:init:s0 msg='avc: denied { set } for property=vendor.camera.sensor.rearMacro.fuseID pid=9788 uid=1047 gid=1005 scontext=u:r:hal_camera_default:s0 tcontext=u:object_r:vendor_default_prop:s0 tclass=property_service permissive=0'
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 973eeecef115e7c6bbe047b8e1ecc10259302d84[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sun Jan 22 23:59:48 2023 +0700
+
+    veux: Move fastrpc_shell_3 init to post-fs
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 5dbe73722fff7422d10299065f3a05ca721d5806[m
+Author: Arian <arian.kulmer@web.de>
+Date:   Tue Sep 27 02:22:38 2022 +0200
+
+    veux: sepolicy: Allow camera hal to read mnt_vendor_file
+    
+    This is necessary to find the dualcamera calibration in persist
+    
+    Change-Id: I89d5d7839e13aeb2f5373b8bdc2e03830407cfb0
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit c19c22451431f2c8492bcd4f432998e90f8b7ca9[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sun Jan 22 19:59:22 2023 +0700
+
+    veux: sepolicy: Label `soc:fpc1020/wakeup_enable`
+    
+    * W fingerprint@2.3: type=1400 audit(0.0:159): avc: denied { write } for name="wakeup_enable" dev="sysfs" ino=46603 scontext=u:r:hal_fingerprint_default:s0 tcontext=u:object_r:sysfs_wakeup:s0 tclass=file permissive=0
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit c996bbe430e8c15742f53f9fdb8b528639fded5a[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sun Jan 22 07:19:09 2023 +0700
+
+    veux: Reformat sepolicy file
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit e7eadd866af3dbb9bc495a6e9f0e547e6825354a[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sun Jan 22 07:00:13 2023 +0700
+
+    veux: Update mi_thermald sepolicy from sm6375-common
+    
+    * Ref: https://github.com/xiaomi-sm6375-devs/android_device_xiaomi_sm6375-common/blob/319561f173aad17d2d99f30973e5234f60eee518/sepolicy/vendor/mi_thermald.te
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 8873fa4bc05b9ef62b43981c81c407b092987756[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Sun Jun 26 22:36:10 2022 +0200
+
+    veux: sepolicy: Don't grant system_server access to fingerprint props
+    
+    Change-Id: I4f391e43a80c25d7fcedde12a70b3215913fcfd2
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit e8879d6366d09b00ac44feae2204b381ebfa40d2[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Sun Jun 26 22:21:46 2022 +0200
+
+    veux: sepolicy: Label fingerprint props as restricted vendor
+    
+    * System only reads them, but never sets them
+    * Rename to vendor_fingerprint_prop while at it
+    
+    Change-Id: Id980731ec53338c5c5a07b81f10a283c428d17aa
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit b9267263699b56c35395e10b35fc8c5905d35fee[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Wed Aug 3 16:48:49 2022 +0200
+
+    veux: sepolicy: Switch to lineage hal macros for mlipay attribute definition
+    
+    Change-Id: Ib6bc419b456f7d4d4277eb882e93e03bfff6d020
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit e32af22ed78fdbdb7e51c28704e0c5cf4ccfc727[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Wed Aug 3 16:47:33 2022 +0200
+
+    veux: Add missing mlipay sepolicy from Xiaomi-SM8250 tree
+    
+    up to HEAD:e2aab9679fea15a8ee0bbf5876bbeb140292e29c
+    
+    Change-Id: Ic68fb82a72954d8eb94314e79733ac71fbaec221
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit f13dfeedeeb08e981c6515553ddfd5f4d2d04656[m
+Author: chaptsand <chaptsand@gmail.com>
+Date:   Tue May 17 18:38:10 2022 +0800
+
+    veux: sepolicy: Allow platform app to find SoterService
+    
+    * Fix selinux denied of WeChat fingerprint payment
+    
+    - E SELinux : avc:  denied  { find } for interface=vendor.qti.hardware.soter::ISoter sid=u:r:platform_app:s0:c512,c768 pid=3613 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:vendor_hal_soter_hwservice:s0 tclass=hwservice_manager permissive=0
+    
+    Issue: https://gitlab.com/LineageOS/issues/android/-/issues/4701
+    
+    Change-Id: I3176f8e709fb31aec16a31094b78f753d1d16b43
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit d3e1fd999621817cb798d2c66cf78718ef4a7ab0[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Sun May 1 01:26:49 2022 +0200
+
+    veux: Move to common Xiaomi fingerprint HIDL
+    
+    Change-Id: I6c29a831e985ee440c92a98aad8d33f25b9e5b2d
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit e1a27dc4a84e812b60439c5b8a45c305bc75d173[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Fri Dec 9 02:17:27 2022 +0100
+
+    veux: overlay: Configure additional camera framerates
+    
+    Change-Id: I51efca86d2169c01fb96af97ef9fe250e2b221ed
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit bbfbdf96018b80bc5c79546f8c0d2a33b6fa3d3b[m
+Author: LuK1337 <priv.luk@gmail.com>
+Date:   Mon Oct 31 21:59:52 2022 +0100
+
+    veux: overlay: Configure aux camera for Aperture
+    
+    Change-Id: I543f078dd4dba30e1b22737d5c22d591e3fb34e6
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 165d9eb7408386c960f001db5783dd53f0fc2b1d[m
+Author: Anton Hansson <hansson@google.com>
+Date:   Wed Nov 7 16:10:05 2018 +0000
+
+    veux: Enforce RRO for all resource overlays
+    
+    Bug: 118823052
+    Test: make
+    Change-Id: I579d09480c7a482543ea616dd5c493d825bb98b1
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 00164a2876ef0ad06f88fc40a0a714fceb22ffaf[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sat Jan 21 14:38:59 2023 +0700
+
+    Revert "veux: Add Google Camera Go Prebuilt"
+    
+    This reverts commit 8a3a43d20c76ec86e70276b32bb1c3e97ac0151a.
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 28274e4b99eed4b94d9effb479c9f069d2e8db3f[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sat Jan 21 14:12:16 2023 +0700
+
+    veux: Fix bluetooth power config on props
+    
+    * Also remove the leftover config from overlay
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit f8f954c9a15d5bb5a138d0d190f281b7a8f2b533[m
+Author: Nate Jiang <qiangjiang@google.com>
+Date:   Fri Jan 14 15:53:46 2022 -0800
+
+    veux: Enable set channel on NDP setup
+    
+    Bug: 190354626
+    Test: build, CtsVerifier
+    Change-Id: Ieff18b96ec0f24c1c20c40add4e47a532ece8922
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 744c49a2ddb8604edb7fa3fec3da66adaec8a80e[m
+Author: Les Lee <lesl@google.com>
+Date:   Wed Jan 5 13:27:25 2022 +0800
+
+    veux: wifi: Configure correct overlay configuration.
+    
+    ag/16564596 will change default value to false.
+    Configure correct overlay configuration.
+    
+    Bug: 212488775
+    Test: manual test & build
+    Change-Id: Iaf1a0a23dae69fde5995e591a757a8ef5374d5b5
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 0a75520241edeff79a19ac9c6d50d8f3c656f839[m
+Author: Woody Lin <woodylin@google.com>
+Date:   Wed Oct 28 11:22:19 2020 +0800
+
+    veux: Enable zygote critical window
+    
+    Bug: 141948707
+    Change-Id: I5dc57312118b0f6d95fc9fe164363ec7e15f1b51
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit a0cbcaa5b3cad931de16367e2e4fcd77cbb5e614[m
+Author: Giovanni Ricca <giovanniricca@proton.me>
+Date:   Wed Jan 18 10:32:39 2023 +0700
+
+    veux: gps: Update to LA.UM.9.14.r1-19200.02-LAHAINA.QSSI13.0
+    
+    Change-Id: I467ece57b82127382f11e48d0dd80e362df0d1c9
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 5f7f63840b3a14a2117fb6ba7425ecaafb9e56a9[m
+Author: Shawn Shin <shshin@codeaurora.org>
+Date:   Fri Aug 28 16:53:05 2020 -0700
+
+    veux: qcc-tr: Define new AID for qcc-trd
+    
+    Change-Id: I47c9b034600c9b31a17de2808030af38f69e10e0
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 3499995a646c72ba17c67fcd47f842aa424b75f3[m
+Author: Ayishwarya Narasimhan <ayishwar@codeaurora.org>
+Date:   Mon Apr 20 15:27:51 2020 -0700
+
+    veux: config.fs: Add mapping for imsdaemon
+    
+    Change-Id: I62629d99e0ace3e5cfa0bdef925e919ddd2ebe12
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 86da1f008f57bab0d0ed4352293e004af5509452[m
+Author: Edgar Flores <edgarf@codeaurora.org>
+Date:   Fri Jan 24 14:21:20 2020 -0800
+
+    veux: config.fs: init: add AID_VENDOR_FASTRPC group for fastrpc
+    
+    Add AID_VENDOR_FASTRPC group, so that fastrpc clients can be in
+    this group to get extra privileges on the remote subsystem, like
+    higher thread priority.
+    
+    Change-Id: Icb8e418cfe66d696cad9d608d30f4b3f2a02bef8
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 1321f842956b6978feec3dfaf14dcdce8826ec8f[m
+Author: Demon000 <demonsingur@gmail.com>
+Date:   Mon Jul 6 02:18:55 2020 +0300
+
+    veux: Slim up filesystem configuration
+    
+    Remove deprecated symlink directories, and remove
+    services that are not present in our system or vendor.
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 9bfa8e2866d7e0e1326510ec51773c5b08afa4d3[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Tue Oct 4 23:51:44 2022 +0200
+
+    veux: Use RSA4096 key also for vbmeta_system
+    
+    * Per https://android.googlesource.com/platform/external/avb/+/master/README.md#build-system-integration, SHA256_RSA4096 is used if BOARD_AVB_ALGORITHM isn't defined
+    * We can assume bootloader is able to understand a RSA4096 key for vbmeta_system as well
+    
+    Change-Id: I1d7a539731add04feb8d89c2234e8050e209c5c1
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit c0f29dd0b78386bdbdc964c94077de00c9a20608[m
+Author: Bowgo Tsai <bowgotsai@google.com>
+Date:   Tue Mar 3 12:15:50 2020 +0800
+
+    veux: Removing GSI keys
+    
+    Those keys will be embedded into VtsSecurityAvb on host side
+    instead, to verify the GSI image used on the device.
+    
+    Bug: 149806769
+    Test: build and checks those keys are removed from
+          $OUT/recovery/root/first_stage_ramdisk/avb/
+    Change-Id: I8a002ba6f1421fb460056ccae6572050bdb0ce3c
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 453382ba732e623dfcd095210c5432399c1accf3[m
+Author: Josh Wu <joshwu@google.com>
+Date:   Mon Jan 24 22:56:14 2022 -0800
+
+    veux: Switch BtAudio to AIDL
+    
+    Test: m
+    Bug: 203490261
+    Change-Id: I4b8ac40d5ad410b89eb6a0573d740d86471ecfc7
+    Merged-In: I4b8ac40d5ad410b89eb6a0573d740d86471ecfc7
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 169df64318acb2c7b825d3dd824827f80759a2b0[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Wed Jan 18 22:09:20 2023 +0700
+
+    veux: Drop qti thermal 2.0 service hals
+    
+    * Crash:
+      - E ThermalHalWrapper: Couldn't get temperatures because of HAL error: ThermalHAL not initialized properly.
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 0105dcda8d7070cb0ea7aa7ded21d141ea5b6a6d[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Thu Sep 29 00:43:20 2022 +0200
+
+    veux: Remove non-existing or implicitly included IPACM packages
+    
+    Change-Id: Iae06f09e101b237187638e76a6dd903ecdc2ca4f
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit b985af0e6597913e68afa34e0a59cf435602b578[m
+Author: llololo <llololo@google.com>
+Date:   Fri Dec 25 07:47:33 2020 +0000
+
+    veux: Remove A2DP input module in audio policy configuration
+    
+    No Pixel device support A2DP sink functionality.
+    
+    Bug: 163050296
+    Test: A2DP related test.
+    Change-Id: I269220cf29451ea79362fc004fa073713f72fdb2
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 704d56ebe8644efdf172cd2a8f5c7d5f4038f82c[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Wed Jan 18 18:34:04 2023 +0700
+
+    veux: Move recovery's blob list to separated file
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit f4994fe17db92373b113a7dc81d31462e0454d99[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Fri Sep 30 23:38:55 2022 +0000
+
+    veux: extract-files: Allow extracting proprietary-files for recovery
+    
+    * We'll be using this to extract touchscreen firmware for recovery
+    
+    Change-Id: I64745ff5823adee79016eabb772265aae3c06f3c
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 44f095e0135ad9b129b5af38f5dbece3dc9b09bc[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Thu Nov 24 19:42:52 2022 +0100
+
+    veux: Add Aperture to config_cameraAuxPackageAllowList
+    
+    * Also add .dev for debugging
+    
+    Change-Id: I7ea8c1c29f58f908bd2db3632b42dd290e55a18d
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 4f22dddab2978ea37f5048cc168432b62b324c9f[m
+Author: LuK1337 <priv.luk@gmail.com>
+Date:   Wed Nov 2 13:16:05 2022 +0100
+
+    veux: Migrate vendor.camera.aux.packagelist to overlay
+    
+    Change-Id: Iee884cc98b5fada492b27e8085de98ae08406cf4
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 0e3744c54a7cbd3b5279dde93eed2bf772697684[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Thu Jan 19 10:10:04 2023 +0700
+
+    Revert "veux: Import usb init file"
+    
+    This reverts commit 2e6fc26bbfa67311e9765d87e9510d4ed3229be9.
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit a7347b0bc51182bde18d295faeb437cbefcbed56[m
+Author: Bruno Martins <bgcngm@gmail.com>
+Date:   Thu Sep 15 16:03:29 2022 +0100
+
+    veux: Remove QTI BT stack bits
+    
+    Change-Id: Ice6c2b0735aa7cb4b2e638a794c778883e706c97
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 699c5837de36daf0dc2cae5d83a007c928773cf9[m
+Author: Alexander Koskovich <akoskovich@pm.me>
+Date:   Wed Jul 20 09:16:53 2022 -0700
+
+    veux: Move BT profiles props to vendor
+    
+     * Makes it GSI compatible
+    
+    Change-Id: I8f7caf241d508af59c16482e6185c42f23f8a460
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit ed1719a5413a6fd0103f36af4e1d21b50a184256[m
+Author: Bruno Martins <bgcngm@gmail.com>
+Date:   Tue Sep 13 23:21:50 2022 +0100
+
+    veux: overlay: Remove BT related configs
+    
+    These have been migrated to sysprops in Android 13.
+    
+    Change-Id: I34c1f6b882a61df6db95523997002512354d875e
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit cd6f1083040cbfe2c7ff6f87ffa9ef47a7679c67[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Wed Jan 18 14:04:15 2023 +0700
+
+    veux: Remove Bluetooth power overlays
+    
+    * Moved to props on d72afed64c91f832b5dcb9992271453826f2b863
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit e8fd37435075b66f7b3631a423ff5219d0cef849[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Wed Jan 18 13:08:15 2023 +0700
+
+    veux: Don't override bluetooth name on recovery
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 2c37d0bf327a035f1b19e01a0c4b28a35485f757[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Wed Jan 18 10:12:09 2023 +0700
+
+    veux: Update build fingerprint version
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit e78a022148e8627f1e8617cbe21c306154a5a0a3[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sat Jan 7 00:27:25 2023 +0700
+
+    veux: Import more vendor blobs from stock
+    
+    * Blobs extracted from: Redmi/veux_eea/veux:12/SKQ1.211006.001/V13.0.3.0.SKCEUXM:user/release-keys
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 2e6fc26bbfa67311e9765d87e9510d4ed3229be9[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Tue Jan 10 17:18:21 2023 +0700
+
+    veux: Import usb init file
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 2f13c103fef07eb0348b53a534d78cb46270111c[m
+Author: halibw <bymark256@gmail.com>
+Date:   Thu Dec 8 18:15:15 2022 +0800
+
+    veux: parts: Bump minSdk version to 33
+    
+    Change-Id: Id16e56f448cc53a736fb8f602d586f671db90623
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 77d7fe23c513a15827ab5e7e5974da9df2a5e4ed[m
+Author: LuK1337 <priv.luk@gmail.com>
+Date:   Sat Oct 15 23:05:18 2022 +0200
+
+    veux: Prevent adding same dependency twice in blob_fixup
+    
+    Change-Id: Idedeb51e027a09f64a29ac67a3a2f2a0594213f6
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit c502779d2116f6d934a8805ca14fe657f15b9678[m
+Author: Andrzej Perczak <kartapolska@gmail.com>
+Date:   Sun Sep 5 17:35:52 2021 +0800
+
+    veux: Symlink libvndfwk_detect_jni.qti for CneApp
+    
+    Needed by CneApp.
+    
+    dlopen failed: library "/system_ext/lib64/libvndfwk_detect_jni.qti.so" needed or dlopened by "/apex/com.android.art/lib64/libnativeloader.so" is not accessible for the namespace "vendor-classloader-namespace"
+    
+    Change-Id: I400f03c3cb60acdc4263c24b1096c5961142f03f
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit edde5d2837d00bb4e373339b6b2e28839d2baac6[m
+Author: Albert I <kras@raphielgang.org>
+Date:   Fri Jul 9 20:46:11 2021 +0800
+
+    veux: Create Adreno symlinks
+    
+    Match stock behavior.
+    
+    Signed-off-by: Albert I <kras@raphielgang.org>
+    Change-Id: Ia9271f360dcca3ffda9387fe969e27fa7507bd2b
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 591ec6bf8b27c339f450ee2718e7ad12de3f0cab[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sat Jan 7 11:45:17 2023 +0700
+
+    veux: Fix bluetooth and USB device name props assignment
+    
+    Create the props if doesn't exist before.
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit d8d8ac63cb582728d0079c8347a98e75793638b7[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sun Jan 1 15:17:42 2023 +0700
+
+    veux: Rearrange package
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 9702af88330a70dee8588204bc99b8ab21275507[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Thu Jul 22 18:49:16 2021 +0000
+
+    veux: vintf: Remove junk Xiaomi HIDL entries
+    
+    Change-Id: I718d4001c140e8ea7335732ce48284eeb74773af
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 210f37f90fe1ee9adabd9494e5ebc3b747a3a3d6[m
+Author: Sal Savage <salsavage@google.com>
+Date:   Wed Apr 27 13:30:38 2022 -0700
+
+    veux: Use the ?= operator so BT properties can be overridden
+    
+    System properties set with the "=" operator cannot be overriden. This
+    device is used elsewhere in the system and some of the properties need
+    to be overridden. The "?=" operator will use the assigned value if no
+    other values are assigned elsewhere, allowing for overrides.
+    
+    Bug: 230638462
+    Test: adb shell getprop | grep bluetooth
+    Change-Id: Id6cd7901555edafef141bbc1bbd5e06dc3a54d0c
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 8aa66031f00a66e4a72b52ed71d9ffa61387de5f[m
+Author: Michael Bestas <mkbestas@lineageos.org>
+Date:   Thu Sep 29 12:35:43 2022 +0300
+
+    veux: Remove bdroid_buildcfg.h
+    
+    As of I3c7aed1bdb45db728d319f7d757400e44d232283 the Bluetooth stack
+    defaults to reasonable defaults that should work for all devices.
+    
+    Change-Id: I056d63c4c8a2727e384172e964dc0000b6773504
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit b1deb86a13f983f589512cb92088a47f76c285ba[m
+Author: Edwin Moquete <edwinmmoquete@gmail.com>
+Date:   Mon Aug 29 01:37:22 2022 +0000
+
+    veux: Switch to legacy sepolicy_vndr
+    
+    Change-Id: I13229c3057bf32c81b0fdace075f0791cb8ad380
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 025a40d82a25e2b9aa2c73a47aee6714a9eec70d[m
+Author: Bruno Martins <bgcngm@gmail.com>
+Date:   Tue Dec 6 17:59:00 2022 +0000
+
+    veux: parts: Fix compilation for QPR1 merge
+    
+    Change-Id: Ifa602ed1ae0734dbda40663770f2e54075bfa208
+    Signed-off-by: Henrique Pereira <hlcpereira@outlook.com.br>
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit bcb7f854588d8139a8e68fe63f46c1b8ec6340d0[m
+Author: Ruchit Marathe <ruchitmarathe@gmail.com>
+Date:   Sun Nov 20 21:22:46 2022 +0530
+
+    veux: overlay: Correct SystemUI apk name and path for pinner service
+    
+    APK name and path was changed as seen here
+    https://github.com/PixelExperience/vendor_pixel-framework/commit/8be4fc80c0af1a38386b7dc23b7392d0a9e64669
+    
+    This causes errors in logs since pinner was trying to pin old app.
+    
+    PinnerService: Could not pin file /system_ext/priv-app/SystemUI/SystemUI.apk
+    PinnerService: Failed to pin file = /system_ext/priv-app/SystemUI/SystemUI.apk
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit e0a476d307afffb3dffbf3dc235bb6e43f95a038[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sat Dec 31 22:16:00 2022 +0700
+
+    veux: overlay: Set default hotspot SSID based on ro.boot.board_id
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 1186a0e9c28b81d1c47a4ae74c4b33686a07dc60[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sat Dec 31 21:50:22 2022 +0700
+
+    veux: overlay: Set device name based on ro.boot.board_id
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 45f19c9a1671a82040a731bf8b3f0a061b0698bc[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sat Dec 31 21:51:16 2022 +0700
+
+    veux: overlay: Move to product partition
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit d473fa4222bf9fff9aefed834d232ddd9dc38cc4[m
+Author: Subhajeet Muhuri <subhajeet.muhuri@gmail.com>
+Date:   Wed Sep 28 23:13:02 2022 +0530
+
+    veux: props: Configure USB device name
+    
+    Signed-off-by: Richard Raya <rdxzv.dev@gmail.com>
+    Signed-off-by: chrisl7 <wandersonrodriguesf1@gmail.com>
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit e6ffb661223ef2768b184340fead9806c3e2753c[m
+Author: Omkar Chandorkar <gotenksIN@aospa.co>
+Date:   Tue Sep 6 16:50:40 2022 +0900
+
+    veux: props: Configure default bluetooth device name
+    
+    Change-Id: I7476d106cb8c16894eaab216e82149c471470066
+    Signed-off-by: Omkar Chandorkar <gotenksIN@aospa.co>
+    Signed-off-by: chrisl7 <wandersonrodriguesf1@gmail.com>
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 1aa4efdbae983456f1ea30bf8d7d0a9bac49c7a0[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Fri Dec 30 19:16:52 2022 +0700
+
+    veux: Remove unused common init file
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 2cfd9c8bbdbd9e317b91543623ce3be17c38f6a0[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sun Nov 20 20:15:01 2022 +0700
+
+    veux: Remove developer gsi keys
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit ef549ea910b5eb65e074dc2452c07f51d59657ca[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sat Nov 19 20:47:19 2022 +0700
+
+    veux: Inherit updatable_apex.mk
+    
+    This reverts commit bdd491a7286fd023a608daf88ae7a868a11dd9a0.
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit f1f23eabfe9ec2467f3811b146165ce70b2a60a2[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Sat Nov 19 20:40:14 2022 +0700
+
+    veux: Format readme
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 4d9b8bbce2d856a98add14876d89190138ea7fe6[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Mon Nov 14 08:56:04 2022 +0700
+
+    veux: Nuke duplicated vendor include
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 76ff1e906cd7dce736def5e9338e8bdd06bad3e5[m
+Author: Ahmad Rulim <personal@rulim34.dev>
+Date:   Mon Nov 14 08:55:04 2022 +0700
+
+    veux: deps: Fix hardware_xiaomi repo name
+    
+    Signed-off-by: Ahmad Rulim <personal@rulim34.dev>
+
+[33mcommit 03f5a55af3c6607b39c4e3e30a29ad2ca9854103[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Tue Nov 8 14:04:25 2022 -0300
+
+    veux: Drop libpiex_shim moved to custom compat
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 64c6c3a49be5736d79aae086cce5cf62ba9b9e7d[m
+Author: UtsavBalar1231 <utsavbalar1231@gmail.com>
+Date:   Wed Mar 30 11:56:18 2022 -0300
+
+    veux: overlay: Update multiple vibration intensity levels config for T
+    
+    Since commit: https://android.googlesource.com/platform/packages/apps/Settings.git/+/eaaf5331d64ab54ce55a857fc73a186d5f256fc5
+    multiple intensities configuration flag has been changed to an interger
+    reflect that change in here to allow multiple intensity vibration pattern in settings.
+    
+    Change-Id: I13f9dbf6280623ad1c954ce96ceecbe363140062
+    Signed-off-by: UtsavBalar1231 <utsavbalar1231@gmail.com>
+
+[33mcommit db7475336dc707f8c105f9a1ace76009470eaae5[m
+Author: Kevin F. Haggerty <haggertk@lineageos.org>
+Date:   Tue Mar 29 23:17:46 2022 -0300
+
+    veux: sepolicy: Allow system_app to read /proc/pagetypeinfo
+    
+    avc: denied { read } for name="pagetypeinfo" dev="proc" ino=4026543033
+    scontext=u:r:system_app:s0 tcontext=u:object_r:proc_pagetypeinfo:s0
+    tclass=file permissive=0
+    
+    Change-Id: I16465eb9acca9ff64a755d47f86f4ff424ebe4de
+
+[33mcommit a1e2aa9d7c3c2b96dedd47f8bcb414e0c53179af[m
+Author: Jaegeuk Kim <jaegeuk@google.com>
+Date:   Tue Mar 29 23:07:52 2022 -0300
+
+    veux: fstab: Add readahead_size_kb=128 to data
+    
+    This can avoid memory pressure.
+    
+    Bug: 181567573
+    
+    Change-Id: I654c4d3bf24fa741c3fb0255431a26d8dcf5f153
+    Signed-off-by: Jaegeuk Kim <jaegeuk@google.com>
+    Signed-off-by: Gagan Malvi <malvigagan@gmail.com>
+
+[33mcommit a44d1e3c9f31c5aa823deca01d9bd9bbadbff52d[m
+Author: UtsavBanar1231 <utsavbalar1231@gmail.com>
+Date:   Tue Mar 29 21:11:09 2022 -0300
+
+    veux: configs: Disable logging from camx module
+
+[33mcommit dad091ec5b120e17bdb182cfcf0a5c9cfbdef45d[m
+Author: UtsavBanar1231 <utsavbalar1231@gmail.com>
+Date:   Tue Mar 29 21:06:20 2022 -0300
+
+    veux: Import camxoverride settings configuration
+
+[33mcommit cad9110c1209b33f6382c0638816024e78d5e1bd[m
+Author: UtsavBalar1231 <utsavbalar1231@gmail.com>
+Date:   Mon Mar 28 13:17:46 2022 -0300
+
+    veux: sepolicy: Grant perms to mount tracefs when CONFIG_DEBUG_FS
+    
+    avc:  denied  { mounton } for  pid=1 comm="init" path="/sys/kernel/tracing"
+    dev="tracefs" ino=1 scontext=u:r:init:s0 tcontext=u:object_r:debugfs_tracing_debug:s0 tclass=dir permissive=0
+    
+    Change-Id: Ia71539ff4b622d5130f2051e8ae490f3b7a4722b
+
+[33mcommit 6910ab4cbc238c32a6cb6163553150fcca41e0a3[m
+Author: Martin Liu <liumartin@google.com>
+Date:   Thu Mar 31 09:42:10 2022 -0300
+
+    veux: props: Enable new lmkd kill strategy
+
+[33mcommit bbd86fd8c6cc5e6c7c1d7e64318a67dfac692c9d[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Sat Mar 26 09:34:13 2022 -0300
+
+    veux: overlay: Set status bar left clock and improve starting padding
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit c42fd3c1a9568af91ea852e3ace3c9b7fdafa308[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Sun Mar 27 21:42:53 2022 -0300
+
+    veux: overlay: Set new dimension values to the framework
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 8a3a43d20c76ec86e70276b32bb1c3e97ac0151a[m
+Author: kleidione <kleidione@gmail.com>
+Date:   Tue Mar 29 18:59:26 2022 -0300
+
+    veux: Add Google Camera Go Prebuilt
+    
+    - CameraGo_2.5_Greatness_Special-2 (com.google.android.apps.cameralite)
+    
+    - Support Group: https://t.me/GcamGo
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 5d45fad4f115b8d3f3c0d5de7f689f72b0350fe9[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Sat Mar 26 19:10:27 2022 -0300
+
+    veux: sepolicy: Add more genfs contexts label
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit daa95cac13e7eb83130d4db63e5d549dda6e826b[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Tue Mar 29 09:37:16 2022 -0300
+
+    veux: libinit: Update build fingerprint version to india variant
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 9c0d383e142fb5dd24e78c296bb5e2f73bb3b5fb[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Thu Mar 24 19:02:29 2022 -0300
+
+    veux: proprietary-files: Update veux vendor blobs
+    
+    - Extracted veux-user 12 SKQ1.211006.001 V13.0.4.0.SKCMIXM
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit a34c96c5cf78620448818a710673fa1fa8bac5bf[m
+Author: UtsavBalar1231 <utsavbalar1231@gmail.com>
+Date:   Mon Mar 21 15:14:39 2022 -0300
+
+    veux: sepolicy: Allow init to write discard_max_bytes on /data partition
+
+[33mcommit fcc09c18f0e03bf8f3538b0b9073d95b9bbe2e99[m
+Author: UtsavBalar1231 <utsavbalar1231@gmail.com>
+Date:   Mon Mar 21 15:12:42 2022 -0300
+
+    veux: sepolicy: Allow setting read_ahead_kb on /data partition
+
+[33mcommit 4fc3e202e2c39b2e5ae71cb59722518f2c2c827f[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Sun Mar 20 20:12:53 2022 -0300
+
+    veux: overlay: Set Interactive mode from display to false
+    
+    - Specifies whether to decouple the interactive state of the
+      device from the display on/off state.
+      When false, setInteractive (true) will be called before the display is turned on
+      and setInteractive (false) will be called after the display is turned off.
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit dee58d9766be91fcaaaee997dbf936f63bc73f7c[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Sun Mar 20 17:43:23 2022 -0300
+
+    veux: sepolicy: Add more sepolicy rule for hal default sensor
+    
+    - [ 7206.619148] type=1400 audit(1666291831.667:316): avc: denied { ioctl } for comm="sensors@2.1-ser" path="socket:[441443]" dev="sockfs" ino=441443 ioctlcmd=0xc502 scontext=u:r:hal_sensors_default:s0 tcontext=u:r:hal_sensors_default:s0 tclass=qipcrtr_socket permissive=0
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 3943b415df9d8e795e7bb8d1a2756c0571d638ab[m
+Author: Omkar Chandorkar <forumomkar@gmail.com>
+Date:   Sat Mar 19 19:55:52 2022 -0300
+
+    veux: props: Optimize package manager dexopt properties
+    
+    * first-boot is set to quicken to reduce first boot times
+    * we are installing with speed-profile to have balance
+      between time taken to optimise and runtime performance
+    * once device is in idle+charging, bg dexopt will compile
+      for maximum runtime performance
+    
+    [ghostrider-reborn]
+
+[33mcommit a7163b1441e4541ebafa7cbbf03fae3315588d13[m
+Author: baalajimaestro <me@baalajimaestro.me>
+Date:   Sat Mar 19 19:51:45 2022 -0300
+
+    veux: props: Optimise dex flags
+    
+    This is a squash of the following commits:
+    1. Optimise dex flags for a faster boot
+    
+    * Used multiple threads and speed profile to hasten the first boot
+    
+    Signed-off-by: baalajimaestro <me@baalajimaestro.me>
+    Change-Id: I2cce5ddf7d50308511e81436fcac613b2c6537bf
+    
+    2. Rework dex flags again
+    
+    When I went through https://source.android.com/devices/tech/dalvik/configure my previous configs felt wrong, this one should be perfect (I hope).
+    Even though there is a slight trade-off for boot time by using the speed profile, we do make up for it by using 8 threads.
+    PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER attempts to compile all prebuilts fully optimised to speed level, thus the phone doesnt need to deal with it.
+    I also do know that this might be a trade-off on size, but I do see the first boot time is more worthy to trade-off.
+    The speed level mentioned here runs dex verification and compiles all AOT methods.
+    
+    Signed-off-by: baalajimaestro <me@baalajimaestro.me>
+    Signed-off-by: Omkar Chandorkar <gotenksIN@aosip.dev>
+    Change-Id: Ic0156ff8956a7c5f53820be6db438f6f6399d3c0
+    
+    3. Switch certain dexopt profiles to verify
+    
+    Prebuilt apps like Gmail/Google App, will be updated by google play, and there is no need spend time and space optimising what is going to be replaced.
+    Switch to Google's recommendation of using verify for an OTA package.
+    Applications still stay on speed.
+    Instead, replace the install profile with speed-profile making apps perform better.
+    
+    Signed-off-by: baalajimaestro <me@baalajimaestro.me>
+    
+    Change-Id: I2cce5ddf7d50308511e81436fcac613b2c6537bf
+
+[33mcommit c169d05ae73b895192189b40d74dd9dafbca5b75[m
+Author: Alexander Koskovich <akoskovich@pm.me>
+Date:   Sat Mar 19 19:46:57 2022 -0300
+
+    veux: props: Drop radio properties that are already default
+
+[33mcommit cbc6b84e8de36428b2e66ef307e31db6af001ed0[m
+Author: Marco <marco.rizzo.00@outlook.com>
+Date:   Sat Mar 19 19:42:19 2022 -0300
+
+    veux: props: enable debug.sf.hw
+    
+    its value is 1 in coral sources: https://android.googlesource.com/device/google/coral/+/refs/heads/master/product.prop
+    also fixes Android Auto related issues
+
+[33mcommit 5a7a77afae99edad6cee55c9c11fc744e7b62a75[m
+Author: Adithya R <gh0strider.2k18.reborn@gmail.com>
+Date:   Sat Mar 19 19:25:35 2022 -0300
+
+    veux: props: Disable debug.sf.enable_hwc_vds
+
+[33mcommit 5ff23924e5cebb0945288d724a64f95621205964[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Fri Mar 18 19:47:15 2022 -0300
+
+    veux: sepolicy: Label more sysfs wakeup nodes
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit b37c927ad0e1648e3b45624fd42878edf8dbcda2[m
+Author: johnmart19 <johnivan19999@gmail.com>
+Date:   Sat Mar 19 11:09:37 2022 -0300
+
+    veux: props: Switch to AutoSingleLayer Android 13 Setting
+    
+    - According to https://source.android.com/docs/core/graphics/unsignaled-buffer-latch
+
+[33mcommit 9076a5888367984daf68872969c92be12215bd58[m
+Author: Jun Wang <quic_junwan@quicinc.com>
+Date:   Sat Mar 19 11:06:31 2022 -0300
+
+    veux: props: Disable Skia tracing by default
+    
+    If the prop debug.hwui.skia_atrace_enabled is enabled, too many
+    skia tracing calls will be printed in every frame. This has obvious
+    overhead on performance/power, and can cause many janks. So disable
+    it by default, and user can set it manually if necessary.
+    
+    Change-Id: I5d470b22a643634bdd7db9f307c29deae6ff176f
+
+[33mcommit 57ed32d5a616cde2c8cdfcb87eb424d5a3587463[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Tue Nov 8 15:49:07 2022 -0300
+
+    veux: Drop android.hidl.base@1.0 moved to custom compat
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 8ca7818a0ab5d5e5080723c2eb5480b0ef49f551[m
+Author: Arian <arian.kulmer@web.de>
+Date:   Fri Mar 18 09:30:42 2022 -0300
+
+    veux: Uprev fingerprint HAL to 2.3
+
+[33mcommit 33f7286bd4c603f6f887b7f510debed659dc34b2[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Wed Mar 16 21:03:39 2022 -0300
+
+    veux: Add aosp dependencies
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit a4b6c95643545fe0d63430904608c2ba6971fc59[m
+Author: Juhyung Park <qkrwngud825@gmail.com>
+Date:   Fri Mar 11 16:08:12 2022 -0300
+
+    veyx: props: Drop perf pre-rendering feature
+    
+    * ref: P-404/android_device_qcom_common@87fc9c5
+    
+    This causes weird inconsistent scrolling behaviors, even on v5.4
+
+[33mcommit 50742efd90494d10271fd321ae98071e47d36f58[m
+Author: LinkBoi00 <linkdevel@protonmail.com>
+Date:   Wed Mar 9 22:04:41 2022 -0300
+
+    veux: overlay: Switch to AVC 3.1 for screen recording
+    
+    In weaker SOCs, AVC 3.1 seems to pull less load on the CPU/GPU
+    and therefore using it has performance advantages in screen recording
+
+[33mcommit 6337b5dbb1dff7326e9eeac647886905634eff89[m
+Author: LuK1337 <priv.luk@gmail.com>
+Date:   Tue Mar 8 19:40:49 2022 -0300
+
+    veux: props: Pull appropriate USB props from vendor_product.mk
+    
+    Change-Id: I93b25c5d0989c83d1c8d7b7946a083771febdddd
+
+[33mcommit da0044875a535abdc2126fbb11a7c37e6942aabe[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Tue Mar 8 13:58:07 2022 -0300
+
+    veux: Do not reserve vanilla builds partitions
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit dbf64962c178ae598ad878f7a68d3ae25d98830b[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Thu Mar 31 08:03:11 2022 -0300
+
+    veux: parts: Improvements thermal profile list layout
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit ba3d4cfcccc8da567117a5ea9b7ccc320cdce97f[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Sun Mar 6 11:57:51 2022 -0300
+
+    veux: Import XiaomiParts from sm8250
+    
+    Credits:
+    https://github.com/xiaomi-sm8250-devs/android_device_xiaomi_sm8250-common
+    
+    - Adapte to pixelexperiece
+    - Drop doze
+    - Drop fod and pop camera
+    - Add Clear speaker
+    - Adapte SEPolicy credis: [Sebastiano Barezzi, Chenyang Zhong]
+    
+    Co-authored-by: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+    Co-authored-by: Adithya R <gh0strider.2k18.reborn@gmail.com>
+    Co-authored-by: kubersharma001 <kubersharma001@gmail.com>
+    Co-authored-by: TheScarastic <warabhishek@gmail.com>
+    Co-authored-by: Joey <joey@lineageos.org>
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit dd562ab58a7439b6d52b89ac6b0fdb130dcea175[m
+Author: daniml3 <daniel@danielml.dev>
+Date:   Fri Mar 4 14:36:46 2022 -0300
+
+    veux: sepolicy: Silence system_suspend denials
+
+[33mcommit 4ea4be4ec9df66af9eb59032f6b95549e20690a6[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Tue Mar 1 08:20:05 2022 -0300
+
+    veux: Extract touchscreen firmware for recovery
+
+[33mcommit deb478bc3eac048f319d1fc792a7441416f5c778[m
+Author: Jake Weinstein <jake@aospa.co>
+Date:   Tue Mar 29 08:08:22 2022 -0300
+
+    veux: Do not balance msm_drm and kgsl-3d0 IRQs
+    
+    These are critical for display performance and should not be balanced
+    in order to improve latency and responsiveness.
+    
+    Change-Id: I0248e26a7154c689c0d3f11dabe14a1b149353f9
+    Signed-off-by: Adithya R <gh0strider.2k18.reborn@gmail.com>
+
+[33mcommit 066a6f56e8ef17c26496fc9398ceb23c91e429d1[m
+Author: madmax7896 <madmax78968@gmail.com>
+Date:   Tue Mar 29 08:05:06 2022 -0300
+
+    veux: Move msm_irqbalance.conf to dt
+
+[33mcommit 7885916f5e1b9facffc13a1c4b5f3f4078a25c88[m
+Author: Ivan Vecera <ivan@cera.cz>
+Date:   Wed Mar 23 10:57:42 2022 -0300
+
+    veux: sepolicy: Allow system_app to access zram sysfs nodes
+    
+    04-22 09:15:37.459 19569 19569 I auditd  : type=1400 audit(0.0:570): avc: denied { search } for comm="pool-2-thread-1" name="zram0" dev="sysfs" ino=48559 scontext=u:r:system_app:s0 tcontext=u:object_r:sysfs_zram:s0 tclass=dir permissive=0
+    04-22 09:15:37.459 19569 19569 I auditd  : type=1400 audit(0.0:571): avc: denied { search } for comm="pool-2-thread-1" name="zram0" dev="sysfs" ino=48559 scontext=u:r:system_app:s0 tcontext=u:object_r:sysfs_zram:s0 tclass=dir permissive=0
+
+[33mcommit 8850ac328a6320cf919ad3693f29e0381a3b7aff[m
+Author: Albert I <kras@raphielgang.org>
+Date:   Sun Mar 20 19:21:54 2022 -0300
+
+    veux: sepolicy: Allow apps and camera HAL access to secure ADSP domain
+
+[33mcommit 6151449344b252bb5ad3ebf54ef57fe55a8bb318[m
+Author: Albert I <kras@raphielgang.org>
+Date:   Sun Mar 20 19:19:29 2022 -0300
+
+    veux: sepolicy: Allow neural networks HAL to read ADSP properties
+    
+    Signed-off-by: Albert I <kras@raphielgang.org>
+
+[33mcommit 503d7c4cb5c60d1ea9ec0fbcdcfbb752faa71e13[m
+Author: dianlujitao <dianlujitao@lineageos.org>
+Date:   Sun Mar 20 19:17:05 2022 -0300
+
+    veux: sepolicy: Make fastrpc_shell_3 publicly available
+    
+     * Used by GCAM for DSP-accelerated HDR processing
+     * Arguably we should label /vendor/dsp/cdsp/fastrpc_shell_3 to
+       same_process_hal_file like Pixels, but the partition is prebuilt thus
+       we're unable to relabel it.
+     * Copy the file to writable tmpfs, setup attributes and bind mount back
+       to workaround the limitation.
+    
+    [ghostrider-reborn]:
+    Allow adsp/cdsprpcd and neuralnetworks HAL to access fastrpc_shell_3
+    
+    [kras edit:
+     1. rename some contexts as per qva/kona
+     2. extend to allow camera HAL and VPP service to access it as well]
+    
+    Co-authored-by: Adithya R <gh0strider.2k18.reborn@gmail.com>
+
+[33mcommit b00894c9a553facab3e38d37f0ff8289b411ea2a[m
+Author: Siddeswar Aluganti <salugant@codeaurora.org>
+Date:   Sun Mar 20 19:02:04 2022 -0300
+
+    veux: gpt-utils: Update PTN_SWAP_LIST and handle multiimg(oem/qti),
+    
+     * Update PTN_SWAP_LIST to reflect partition entry changes
+       to BOOT LUN and handle "multiimgoem", "multiimgqti"
+       partitions, similar to other BOOT LUN partitions.
+
+[33mcommit a41298177a33672891f19381c313f182de0de7ee[m
+Author: Arian <arian.kulmer@web.de>
+Date:   Sun Mar 20 18:54:23 2022 -0300
+
+    veux: gpt-utils: Do fsync after writing partition entries
+    
+    Do fsync after writing partition entries to ensure data
+    is actually written before rebooting device.
+
+[33mcommit 67d92ab6210fcca2b89e658ee4bca3f1ad064709[m
+Author: Arian <arian.kulmer@web.de>
+Date:   Sun Mar 20 18:49:54 2022 -0300
+
+    veux: gpt-utils: Add product to ab partition list
+
+[33mcommit 9424d25fed19e5ced4783fb5a64bdd8ef9a6f16e[m
+Author: Arian <arian.kulmer@web.de>
+Date:   Sun Mar 20 18:47:50 2022 -0300
+
+    veux: gpt-utils: Drop unused sparse_crc32
+
+[33mcommit 0e5dffb6f9c432f5b841f88c6ba72855495f7c96[m
+Author: Alexander Koskovich <akoskovich@pm.me>
+Date:   Tue Mar 22 19:56:23 2022 -0300
+
+    veux: bootctrl: Update to Boot Control HAL v1.2
+
+[33mcommit f790bb2b56529d3fa20dd90d62f3757839e7b6dd[m
+Author: Michael Bestas <mkbestas@lineageos.org>
+Date:   Sun Mar 20 18:46:37 2022 -0300
+
+    veux: bootctrl: Remove bootctrl.xiaomi_holi target
+    
+    * This is no longer used after switching to QTI 1.1 impl.
+
+[33mcommit 9e63b6ac9e08588343d987e2a9249150cc07c39b[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Wed Mar 30 21:15:46 2022 -0300
+
+    veux: Tweak color mode and drop saturated input
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 930ed802804ba96ff8b535925162eb4e16e797e9[m
+Author: Albert I <kras@raphielgang.org>
+Date:   Mon Mar 21 15:08:00 2022 -0300
+
+    veux: Set up display color compositions
+    
+    * Use default color mode for all color modes
+    * Enable QDCM combined mode and disable factory mode
+    * Drop LiveDisplay's color mode support as it conflicts with AOSP display
+      color adjustment
+    * Rest of configuration is kanged off Pixel's overlay
+    
+    Signed-off-by: Albert I <kras@raphielgang.org>
+    Change-Id: Ib26033fe00a6cc1e8c7d8f93da417516e31a52e3
+
+[33mcommit d65011ee49e63b9259d655e00c0a96ca111e3647[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Sun Mar 20 16:51:50 2022 -0300
+
+    veux: Update power_profile.xml and adapte to new source
+    
+    - Extracted veux-user 12 SKQ1.211006.001 V13.0.2.0.SKCMIXM
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+    Co-authored-by: johnmart19 <johnivan19999@gmail.com>
+
+[33mcommit d78218c3dbeee3069987a3cb6f9243a2057d127d[m
+Author: madmax7896 <madmax78968@gmail.com>
+Date:   Mon Mar 21 16:08:02 2022 -0300
+
+    veux: Set corrert soc manufacturer props
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 23c785cf0b9844ab95e5e2112efa5340b7071602[m
+Author: Jiyong Park <jiyong@google.com>
+Date:   Mon Mar 21 18:27:57 2022 -0300
+
+    veux: vibrator: Remove ndk_platform backend. Use the ndk backend.
+    
+    The ndk_platform backend will soon be deprecated because the ndk backend
+    can serve the same purpose. This is to eliminate the confusion about
+    having two variants (ndk and ndk_platform) for the same ndk backend.
+
+[33mcommit da2a8e5651ceba8651a70d4ac98f20f8b01a234b[m
+Author: TheScarastic <warabhishek@gmail.com>
+Date:   Mon Jun 27 22:24:41 2022 -0300
+
+    veux: overlay: Add support for doze auto brightness
+    
+    - Based on observing it's values, xiaomi.sensor.aod reports
+      the following events:
+    
+    3.0: Dark environment
+    4.0: Bright environment
+    5.0: Switched from bright to dark environment
+    
+    3.0 does not seem to be triggered anymore after bright
+    environment has been reported.
+    
+    - Enable brightness buckets in doze to disable animation
+      between the brightness levels.
+
+[33mcommit d00ea7e70002b6990407ed6a59553a0d34f80322[m
+Author: kiranpranay <pranaybannu12@gmail.com>
+Date:   Fri Mar 18 08:02:55 2022 -0300
+
+    veux: overlay: Fix Video Calling
+    
+    Co-Authored-By: AngeloGioacchino Del Regno <kholk11@gmail.com>
+    Co-Authored-By: IMMANUEL44 <immanuelr44@gmail.com>
+    Signed-off-by: Anar Jabiyev <cebiyevanar@gmail.com>
+    Change-Id: I9b785c9ad6d77780ef9ac4bc8545bf4d2795132d
+
+[33mcommit 75322ed59d7eff50ca050b75c8d969d28cbbde02[m
+Author: LuK1337 <priv.luk@gmail.com>
+Date:   Thu Jul 28 21:51:03 2022 -0300
+
+    veux: overlay: Add reboot_fastboot action to power menu
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 32a9ccbb2ea90c42ed11338f2944abc785dac519[m
+Author: Alexander Winkowski <dereference23@outlook.com>
+Date:   Thu Mar 10 20:32:00 2022 -0300
+
+    veux: Fix AAPT config
+    
+    According to AOSP docs [1] apps should use xxhdpi resources
+    for 440 dpi density.
+    
+    [1] https://developer.android.com/reference/android/util/DisplayMetrics#DENSITY_440
+
+[33mcommit 60599dfc28d95fae7fb901d6ddf0018f7e7aa1b7[m
+Author: AdarshGrewal <adarshgrewal@gmail.com>
+Date:   Wed Mar 9 17:49:30 2022 -0300
+
+    veux: overlay: Enable front-facing camera protection
+    
+    * Prevents halo ring/effect on front camera
+
+[33mcommit 68f6e35d6fb4c1d6dc22f65d56a8af4e38dce03f[m
+Author: AdarshGrewal <adarshgrewal@gmail.com>
+Date:   Wed Mar 9 17:42:05 2022 -0300
+
+    veux: overlay: Configure camera cutout
+
+[33mcommit 0cb6d6034a966e35516f4ec18d504cc94f9169eb[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Fri Mar 25 20:34:37 2022 -0300
+
+    veux: Discard things from the lineage
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 7c24266376463607d9c30c71b38df2ddcd8027ad[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Thu Jun 30 12:13:58 2022 -0300
+
+    veux: overlay: Improved margin and status bar padding
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 9f0f101777db25b18731eb05ea4e0798b96acea3[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Thu Mar 10 22:26:17 2022 -0300
+
+    veux: overlay: Set default value night display color temperature
+    
+    - 2850 seems too low a value let's increase it to 3850 is more pleasing to the eye
+    
+    - Ref:
+    https://android.googlesource.com/platform/frameworks/base/+/android-13.0.0_r4/core/res/res/values/config.xml#829
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 86c7d94bc0430e9b37e6278169f118674bfa7c4a[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Thu Mar 10 19:14:27 2022 -0300
+
+    veux: Drop sound trigger
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 0a26c6dc02e03d6feda10654a0ee93c0c8e779be[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Tue Mar 8 15:24:32 2022 -0300
+
+    veux: overlay: Set screen timeout to 30 seconds
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 05859b7097f97a55a1d54d5e8e9f51fe083864f8[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Tue Mar 8 09:24:47 2022 -0300
+
+    veux: Reorder device.mk
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 8a9559875102865d6266c0e0b60e6c53e923afe8[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Sat Aug 20 05:39:37 2022 +0000
+
+    veux: Remove junk BT props
+    
+    - Not needed for AOSP BT
+    
+    Change-Id: I4219d2b32fab128ab3c1bd0a33856ec53dca0c98
+
+[33mcommit bb56ec978ff161bad0df1635c81f72b9b9de3a03[m
+Author: Arian <arian.kulmer@web.de>
+Date:   Sat Aug 20 00:31:27 2022 +0200
+
+    veux: Improve camera shim
+    
+    Change-Id: Id11965102d7d5dce50f989c99810cda6a43aa1ec
+
+[33mcommit 5c6db10d2d03f964cfa1d5783eeaad24c1b88d2c[m
+Author: daniml3 <daniel@danielml.dev>
+Date:   Fri Aug 19 13:56:19 2022 +0200
+
+    veux: shim the GetPreviewImageData symbol on libpiex
+    
+    Signed-off-by: daniml3 <daniel@danielml.dev>
+
+[33mcommit 7ffea77517fe9eaba247287e36da52bcd271babf[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Thu Mar 24 16:18:27 2022 -0300
+
+    veux: proprietary-files: Update veux vendor blobs
+    
+    - Extracted veux-user 12 SKQ1.211006.001 V13.0.2.0.SKCMIXM
+
+[33mcommit d72afed64c91f832b5dcb9992271453826f2b863[m
+Author: Alexander Koskovich <akoskovich@pm.me>
+Date:   Wed Jul 20 14:41:25 2022 -0700
+
+    veux: Add Bluetooth power overlays to sysprops
+    
+     * These are currently in FrameworksResTarget, but were
+       moved to sysprops in Android 13.
+    
+       https://android.googlesource.com/platform/system/libsysprop/+/976d33062b51e77edde44faad1a6e801c5dc0188%5E%21/#F0
+    
+    Change-Id: I5bff67a15c537e8a47a19f30776fca6bf2c9fbe5
+
+[33mcommit ac7326078caa3fbe8391335528355829aab58b96[m
+Author: Sal Savage <salsavage@google.com>
+Date:   Mon Apr 25 16:43:16 2022 -0700
+
+    veux: Set default the Bluetooth class of device
+    
+    The class of device is a string with a list of uint8t values:
+    90,2,12
+    
+    The meaning is as follows:
+    {Service Field, Major class, Minor class}
+    
+    Service Field: 0x5A -> 90
+        Bit 17: Networking
+        Bit 19: Capturing
+        Bit 20: Object Transfer
+        Bit 22: Telephony
+    MAJOR_CLASS: 0x02 -> 2 (Phone)
+    MINOR_CLASS: 0x0C -> 12 (Smart Phone)
+    
+    Bug: 217452259
+    Test: make -j; -- check that bluetooth.device.class_of_device is
+    correct
+    
+    Change-Id: I24fd57bacbf6786a26f7079e7a6e9857dbe170d1
+
+[33mcommit db3619015e360eca5e1f66025948f7e625ab62cc[m
+Author: Sal Savage <salsavage@google.com>
+Date:   Thu Apr 7 15:54:04 2022 -0700
+
+    veux: Update LE Audio profile properties to match spec and implementation
+    
+    Bug: 217448211
+    Test: atest BluetoothInstrumentationTests
+    Change-Id: I9312b9b70b51603aca6da6f4081533ab73c1614d
+
+[33mcommit 220ad386823c152e073fc87117facd2055d3787c[m
+Author: Sal Savage <salsavage@google.com>
+Date:   Fri Feb 4 09:41:57 2022 -0800
+
+    veux: Enable bluetooth profiles with product.prop
+    
+    Bug: 217448211
+    Test: make -j
+    Change-Id: Idd7e52b7822915ed61299f1c0b29bf87ca0339fe
+
+[33mcommit e22ad24c6446d0f0800ab4371273a2d71bb0e250[m
+Author: Santiago Seifert <aquilescanta@google.com>
+Date:   Mon Jan 24 16:45:45 2022 +0000
+
+    veux: Unpin updatable-media from memory
+    
+    Bug: 214499288
+    Change-Id: I83757ae6a053ec6b10b08322c4e76d988f1a4a48
+    Test: Presubmit
+
+[33mcommit 8a08265993a8c3ce9303db22c7fef620e50377de[m
+Author: Pirama Arumuga Nainar <pirama@google.com>
+Date:   Fri Jan 28 10:15:12 2022 -0800
+
+    veux: Fix -Wbitwise-instead-of-logical
+    
+    Bug: http://b/215753485
+    
+    This warning is introduced in clang-r445002.  In code where the bitwise
+    operation was used to avoid short-ciruit evaluation, make that explicit
+    by introducing temporary variables.
+    
+    Test: build with clang-r445002.
+    Change-Id: Ia7ccf1d48922d926313f691888d26c3e314c1056
+
+[33mcommit 2a86e54bd722da7fb87e51d17dbc88823e84709f[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Wed Aug 17 04:07:14 2022 +0000
+
+    veux: Inherit developer gsi keys
+    
+    error:  build/make/target/product/gsi_keys.mk does not exist..
+    
+    Change-Id: I7ac37f3e104f1bc6dce504ca29fcbf078127b399
+
+[33mcommit 2921ec8cc5046cff491f36075fb3619559119ff5[m
+Author: Tyler Trephan <tylertrephan@google.com>
+Date:   Tue Nov 16 21:23:12 2021 +0000
+
+    veux: [partial-pick]: Updated multihal to use new sensors AIDL interface.
+    
+    Test: make android.hardware.sensors@aidl-multihal
+    Fix: 206867060
+    Change-Id: I9b78a0f25117d11fdf4beb1e0913393c1c14620d
+
+[33mcommit 6ca930cc2e7a47880ac1b863e6ca53df814cc1ad[m
+Author: Etienne Ruffieux <eruffieux@google.com>
+Date:   Fri Mar 4 13:34:57 2022 +0000
+
+    veux: Removed audio A2dp from device.mk
+    
+    Bug: 220306859
+    Test: atest
+    Tag: #feature
+    Change-Id: I300369d36399ffb558b98bafc2478b872d09faba
+
+[33mcommit 45cd8294c9a6d4126454218d1e5b7cb52cb73f2d[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Sat Jul 30 18:18:43 2022 +0530
+
+    veux: Import wcg_composition_dataspace from MIUI
+    
+     -  Its set in default.prop
+    
+    Change-Id: I8d94738978b3ef3f146a938a592500437bfc1b00
+
+[33mcommit 7fd54bb6a95d1124417aa47dd1a4dc0456882b09[m
+Author: Jabiyeff <cebiyevanar@gmail.com>
+Date:   Sun Jul 24 05:04:44 2022 +0000
+
+    veux: Strip size of com.qti.node.mialgocontrol.so
+    
+    * Size decreased from 148 mb to 12 mb.
+    
+    Signed-off-by: Jabiyeff <cebiyevanar@gmail.com>
+    Change-Id: If680f2b0511f9e348973ea2a98f9f832745f6d79
+
+[33mcommit 0184750ea02880f1269bfd2043d63eef959d9ca0[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Wed May 18 09:43:16 2022 +0200
+
+    veux: Drop QTI camera device usage
+    
+    * qcom-camera topic hasn't been ported to 19.1
+    * Keep building vendor.qti.hardware.camera.device@1.0 interface lib, IMS stack and possibly camera HAL still needs it
+    
+    Change-Id: I87bcd5b54ad986d5844df50de243fc1a18507198
+
+[33mcommit 4b79a5e3f20efa5b578b9cd672976a2070123936[m
+Author: Midas Chien <midaschieh@google.com>
+Date:   Tue Jul 7 23:03:06 2020 +0800
+
+    veux: enable idle timer with kernel support
+    
+    Enable display kernel driver idle timer, which allows dropping to lower
+    refresh rate earlier and without additional overhead.
+    
+    Bug: 160682800
+    Test: track idle timer through systrace
+    Test: zone test, scrolling
+    Change-Id: I6e82b58026d7b31cf0cabc0db7bb6277f6731d12
+
+[33mcommit 12ad75e933dad88c3ad1a6f1fabee63622616977[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Fri Jul 1 18:47:46 2022 +0530
+
+    veux: Further relax dynamic refresh rate switching
+    
+    Change-Id: Ic0fbdc97961808eba939b5785a4e1c2a275bed63
+
+[33mcommit 77cda1fe51ea40c2ea6841f5f6af7868f903e537[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Fri Jul 1 18:41:56 2022 +0530
+
+    Partially revert "veux: Import app/sf phase offset as duration props"
+    
+     - I need to revist this later, rollback for now.
+     - Keep prop to set frame rate multiple threshold to 120 because https://github.com/search?q=Ie4d5c8c9a45079306ad51e1607ae72eb9493ee0c&type=commits
+    
+    This reverts commit 5fece213ba7bf9c4cfd85f3e1873d1e3291bb551.
+    
+    Change-Id: I95ad1841a2a4206b681a8503c190dc7ddf4b2cf3
+
+[33mcommit 8064d8055f9ea648330e95c0a731919aabcb9d66[m
+Author: Cosmin Tanislav <demonsingur@gmail.com>
+Date:   Mon Sep 20 06:46:02 2021 +0300
+
+    veux: remove module loading from 5.4 gki directory
+    
+    Change-Id: I591b4ae4bc0adaa5f57e19ccb5d06dd5f1a42fcd
+
+[33mcommit 1a6d113282ccf6ab157fd0b019129094b56f7d2b[m
+Author: Doctor Strange <faizanbashir380@gmail.com>
+Date:   Fri Apr 29 21:35:34 2022 +0530
+
+    veux: disable STATE_DOZE
+    
+    - Our device doesn't support doze
+    - Fixes AOD flickering issues
+    
+    Change-Id: I44855e85f7d9e26666a8efb79afc202c69770615
+
+[33mcommit c60f8497a7b88f135485f24bb0f8ec098ccc4c5c[m
+Author: Alex Cruz <alex@dirtyunicorns.com>
+Date:   Tue Nov 20 08:50:09 2018 -0500
+
+    veux: Fix display flicker after exiting AD/AOD
+    
+    Change-Id: Ic8ce5064ca3e27432331ac679b7dd3df166089
+
+[33mcommit d90d61b96cd6f773fc5684ea982eb4cb113483d1[m
+Author: XiNGRZ <chenxingyu92@gmail.com>
+Date:   Wed May 20 07:18:35 2020 +0000
+
+    veux: overlay: Setup burnIn protection overlays
+    
+    Change-Id: I2f724061fd974cc6f20dc2abd64ee61c0167789a
+
+[33mcommit e7617bb4ed7a7f6e4d1e7c39817335860085e4e9[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Wed Jun 29 11:28:20 2022 +0530
+
+    veux: Import missing media props from stock
+    
+    Change-Id: I6b7d0b928e3d368ce3253f6716f3df6fc628ca02
+
+[33mcommit 5dbf5b1b66ab7b43b28450ea4de037b62aec0fec[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Wed Jun 29 09:53:41 2022 +0530
+
+    veux: Import app/sf phase offset as duration props
+    
+    ref: gs101 - android-12.1.0_r8
+    Change-Id: Iadd9780769f3f7eda9476d93ecc0817b51d6ba87
+
+[33mcommit 0b6a5ee0de51d8fbb2a914c8df5a3970f0dee2db[m
+Author: Andrzej Perczak <linux@andrzejperczak.com>
+Date:   Mon Feb 28 23:16:57 2022 +0100
+
+    veux: Disable radio redir_party_num feature
+    
+    Caused incoming caller number not being parsed correctly by Phone app on
+    VoLTE and VoWiFi. No idea why Xiaomi enabled this ancient prop.
+    
+    Signed-off-by: Jyotiraditya Panda <jyotiraditya@aospa.co>
+    Signed-off-by: Adithya R <gh0strider.2k18.reborn@gmail.com>
+    Change-Id: Ie3e3459558be2bad2938aee02e1aa25da47ecd31
+
+[33mcommit 93f23ce8504d7dfd37677447ecdcd55c08f7c1d2[m
+Author: Adithya R <gh0strider.2k18.reborn@gmail.com>
+Date:   Tue Apr 12 23:53:13 2022 +0530
+
+    veux: Set refresh rate idle timeouts
+    
+    This is a squash of the following:
+    
+    1. Set refresh rate idle timeout in SF
+    
+     * This allows refresh rate to drop to 60Hz when idle,
+       leading to minor power savings.
+    
+     * Kanged from redfin with minor modification.
+    
+    2. Relax automatic refresh rate switching
+    
+     * In some cases there maybe a slight flickering while
+       switching refresh rate. Increase the timeout to
+       reduce the frequent switching and improve UX.
+    
+     * Move the props to product to override the ones in
+       vendor which is set by display HAL configuration.
+    
+    Change-Id: I5fbfd45fb30479db46970214db15a115acb075ef
+
+[33mcommit 8d174768ad474bfd6928cce1ac6299194c8e8a3f[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Tue Jun 28 00:48:54 2022 +0530
+
+    veux: Set config_powerDecoupleInteractiveModeFromDisplay to true
+    
+    Change-Id: I0a87ff5b2c475769cd75e0fcbd79d230f711c5c1
+
+[33mcommit 136a52034dc28a6770a43b663d7a92605205075a[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Mon Jun 27 18:20:29 2022 +0530
+
+    veux: FrameworksResOverlay: Import and set more defaults
+    
+     - ref:
+           1. ghostrider-reborn/android_device_xiaomi_lisa
+           2. ArrowOS-Devices/android_device_xiaomi_sm8350-common
+     - Adjust and cleanup as per veux
+    
+    Change-Id: I9fc92e55c1af3e3820670523b59f3fb04270bd66
+
+[33mcommit 033fd52f2bc205e4c4b2657919100b139a24b3bb[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Mon May 3 07:29:49 2021 +0000
+
+    veux: overlay: Enable min/max refresh rate in display settings
+    
+    Change-Id: Ic070c507aeaeb98ce859fe00b95f3a6e5df26a8c
+
+[33mcommit dd4d3ccaa8b0372d42834508728086ac944e4791[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Wed Oct 13 08:12:52 2021 +0000
+
+    veux: Remove config_jitzygoteBootImagePinnerServiceFiles list
+    
+     - obsolete on android-12
+    
+    Ref: I97738435edd07e8b6770372cd935218c1a9cd984
+    Change-Id: Ibbc8d35961d919ccdc454ef2043824f38191637e
+
+[33mcommit 68ee95d8fbb16d53ad029a1adb5406785c32b699[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Tue Mar 8 12:00:23 2022 -0300
+
+    veux: Kill console parameters
+    
+    Change-Id: I69a14e00cfc3291175351259f2d8cbd6b0dc827a
+
+[33mcommit 0f0dfc036e78fbd2b4ad5262353c9439c3f34953[m
+Author: Alexander Koskovich <zvnexus@outlook.com>
+Date:   Tue Mar 8 11:57:15 2022 -0300
+
+    veux: Remove virtual framebuffer
+    
+     * It's largely for testing purposes and it consumes
+       a large amount of memory. If your hardware doesn't
+       have graphics then it can be useful, which isn't the
+       case for shipped devices.
+    
+    Change-Id: I2348718ad3afba846498572161fa7e83dd8b7ce9
+
+[33mcommit 354b479b55a4a17f86eec5796b7597ce1bdc36ce[m
+Author: nullbytepl <nullbytepl@gmail.com>
+Date:   Sun Jun 20 13:02:44 2021 +0800
+
+    veux: overlay: Limit screen recorder's framerate to 60fps
+    
+    Change-Id: Iea0976ae3b43312b4b596e004582cbe4440b1aff
+
+[33mcommit 58dc99600b7dcee18a17f4a9ce46604302b5cfbb[m
+Author: Demon000 <demonsingur@gmail.com>
+Date:   Mon Apr 6 16:24:03 2020 +0200
+
+    veux: Disable proximity usage during doze
+    
+    Change-Id: I5c54643b3d6d6ea4e5f847870a5266bb96342583
+
+[33mcommit 578d029ed1d98c9fc84597fea8bfcaec9af68a2c[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Mon Sep 6 10:54:12 2021 +0000
+
+    veux: Switch to AOSP WFD
+    
+    Change-Id: I1ae32e41ea3cdb1f3b5d7f81a57f548fa211c9ca
+
+[33mcommit ef191576bbc32d24978a13711fa289d94f832b0a[m
+Author: hkuang <hkuang@google.com>
+Date:   Wed Dec 16 12:45:05 2020 -0800
+
+    veux: Update the transcoding operating rate
+    
+    Bug: 175231451
+    Test: CtsMediaTranscodingTestCases:MediaTranscodeManagerTest
+    Change-Id: Id25ce60b58ab29a8670695c77be20dd53d63981a
+
+[33mcommit 7bf112570aa7b5fab718dc587c000525e8684df9[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Thu Jun 23 10:53:31 2022 +0530
+
+    veux: Import product props
+    
+     - V13.0.8.0.RKCMIXM
+    
+    Change-Id: I54c4a00971a42750a4b0809913250f72b0b7c167
+
+[33mcommit 36587785fba7c492511f96eb28ed9b8baf73339d[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Mon Jun 20 18:02:31 2022 +0530
+
+    veux: Set audio volume step levels
+    
+    Change-Id: Ie4f78b6a13cb40cb67ce67f0269c2a94cc900326
+
+[33mcommit 383fc82e18c8688e48fc48efa212f0dc4bac616a[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Thu Jun 23 10:45:27 2022 +0530
+
+    veux: Remove recorder-max-base-layer-fps prop
+    
+     - not valid
+    
+    Change-Id: Ib4fa4e0f878402808ce1ea8340df32eb877ef418
+
+[33mcommit c42ac98d87c49b5a82357ee7b3aa64a7e352ca38[m
+Author: Chenyang Zhong <zhongcy95@gmail.com>
+Date:   Sat Mar 12 11:35:38 2022 -0500
+
+    veux: audio_policy_configuration: Remove quad mic
+    
+    Change-Id: Ia29ac831f57bc958b78163090c12e340f3b3b658
+
+[33mcommit 77a690b4cf7292c8ca4875b046c18c24308f4a82[m
+Author: Jasmine Cha <chajasmine@google.com>
+Date:   Tue Mar 31 12:18:54 2020 +0800
+
+    veux: audio: correct routing order for voip output
+    
+    Routing primary output before voip_rx output will cause unexpected
+    RX/TX path suddenly and unmuted voice stream during when system
+    plays touch sound and switches path between handset and handsfree.
+    
+    Bug: 154290829
+    Test: manual test in VoIP
+    
+    Signed-off-by: Jasmine Cha <chajasmine@google.com>
+    Change-Id: Ia60802ec887f0dfeaa0f93d151ba2f2c50e0d41d
+
+[33mcommit 5d2e1e550ee4d117923b8fc6db008cab3d0efcd4[m
+Author: LuK1337 <priv.luk@gmail.com>
+Date:   Mon Jan 29 00:55:25 2018 +0100
+
+    veux: audio: Disable ULL mode
+    
+    - Ultra low latency playback is currently broken. Crackling audio
+      can be well noticed while playing WhatsApp audio messages or even
+      during some games.
+    
+    - This patch routes all audio that normally used audio-ull-playback
+      paths to low-latency-playback paths instead, thus meaning we're
+      switching from ULL to LL mode.
+    
+    Change-Id: I8adf8a67a6151843cff5860f430d87727ad8f4c2
+
+[33mcommit ef93cbfa82112133b16f97c6aff82406b7ae5616[m
+Author: Adithya R <gh0strider.2k18.reborn@gmail.com>
+Date:   Thu Jan 6 14:11:07 2022 +0530
+
+    veux: audio: Nuke haptics output from audio policy
+    
+    - doesnt work and kills alarm audio when vibration is enabled
+    
+    Change-Id: If8b4de516f60b0a4187b976c8d86b93e58119455
+
+[33mcommit 298fd97ba93a47464d403a3fbaaf0fdc5eecde51[m
+Author: Park Ju Hyung <qkrwngud825@gmail.com>
+Date:   Wed Jun 15 22:28:15 2022 -0300
+
+    veux: overlay: Enable burn-in protection for status/navbar
+
+[33mcommit 446c5f509cbe714aab4e502584ef26f20d1838c7[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Sat Mar 19 19:13:14 2022 -0300
+
+    veux: props: Set drm.service.enabled
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+    Change-Id: Ib9248d9e7101998975567e23dd6092dbef6b7410
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit d9b82dd0d8fc635fcd05cfe0d1782f4108027e29[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Mon Jun 20 17:42:46 2022 +0530
+
+    veux: Set netflix custom property
+    
+    Change-Id: Ifabc0afcbd93994b3b1f754928a37570e032cc39
+
+[33mcommit b4f4bc4adf1b95748015393c511689c4f2bd3e20[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Mon Jun 20 17:38:38 2022 +0530
+
+    veux: Set aux packagelist prop
+    
+    Change-Id: I6fdcda70a5e0498e65e95e29480676dd8f8d7ada
+
+[33mcommit bdd491a7286fd023a608daf88ae7a868a11dd9a0[m
+Author: kubersharma001 <kubersharma001@gmail.com>
+Date:   Wed Dec 15 17:06:48 2021 +0000
+
+    veux: Don't inherit updatable_apex.mk
+    
+    This is because of the following reasons:
+    - Many build scripts force disable it anyways by settings OVERRIDE_TARGET_FLATTEN_APEX env flag so why bother rendering differences in official and local builds [1][2].
+    - Compressed apex causes issues with OTA on A only devices [3].
+    - Compressed apex may cause issues on devices which do not meet kernel requirements [4].
+    - Highly anticipated mainline modules update aka Play System updates is limited to OEMs/Pixels only [5], we don't do such things on AOSP; shipping Pixel prebuilt apex components feels somewhat unethical.
+    
+    Ref:
+    [1]: https://github.com/lineageos-infra/build-config/blob/8e435ce7ff7c74097b3500e143380273e099aefb/android/build.sh#L9
+    [2]: https://github.com/LineageOS/android_build/blob/lineage-18.1/target/product/updatable_apex.mk#L19
+    [3]: RecoverySystemService: Failed to reserve space for compressed apex
+    [4]: https://source.android.com/devices/tech/ota/apex#kernel-requirements
+    [5]: "pushed to end-user devices, either by Google (using the Google Play Store infrastructure) or by the Android partner (using a partner-provided OTA mechanism)." as stated in https://source.android.com/devices/architecture/modular-system#architecture
+    
+    test: m, boots and ota.
+    
+    Change-Id: I5b5c2366398791100fa2222ef779ca4d90842211
+
+[33mcommit c9251f5aa8d5fe5d56f8ea1d1287d531881bb57a[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Tue Mar 8 08:42:00 2022 -0300
+
+    veux: Start bringup to PixelExperience
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 43b79abc1172bfdb7675fe4e4d1b60542c99f207[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Wed Jun 15 19:14:39 2022 -0300
+
+    veux: proprietary-files: Re-order and import some blobs
+    
+    Change-Id: Ifa174b17f0f11a9c38864dd30e4e00523bc3ac81
+
+[33mcommit 74f36a177a61de03c420facaa30fa5aea155979c[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Fri Jul 1 18:05:25 2022 -0300
+
+    veux: overlay: Rebrand and import veux config
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 6439f6f3f34bf92ff92f0e259d16a7e76e2e9179[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Fri Jul 1 18:08:07 2022 -0300
+
+    veux: Import and cleanup rro_overlay from vayu
+    
+    - Ref: https://github.com/ArrowOS-Devices/android_device_xiaomi_vayu
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 44d5c9e2cf9f1ce0670be5bedd1e415cd5c3e739[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Thu Mar 24 09:16:43 2022 -0300
+
+    veux: Merge common tree to veux
+    
+    - Ref:
+      https://github.com/xiaomi-sm6375-devs/android_device_xiaomi_sm6375-common
+    
+    Signed-off-by: kleidione <kleidione@gmail.com>
+
+[33mcommit 15eeafbf239f393fcb6ed1a719398e5b7bbd6a19[m
+Author: kleidione Freitas <kleidione@gmail.com>
+Date:   Sun May 15 05:02:13 2022 +0000
+
+    veux: add missing camera blobs
+
+[33mcommit ca5e874170f9844edac60355013294e7eff1510d[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Sat Apr 30 19:02:03 2022 +0000
+
+    veux: overlay: set side FPS properties
+    
+    * Don't set displayID as it's display-independent
+
+[33mcommit c1570cd3da3b10fa7c2da8bef6f8512d99e12c23[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Sat Apr 30 19:00:20 2022 +0000
+
+    veux: overlay: We got fingerprint on power button
+
+[33mcommit f36bb66a1b6b6140f2c753154b87d98b94013cb3[m
+Author: Roger Ellis <ellisr@google.com>
+Date:   Sat Oct 9 15:30:23 2021 +0200
+
+    veux: Add exclusion for vendor ELF prebuilts
+    
+     - ELF prebuilts were banned in PRODUCT_COPY_FILES starting May 11.
+     - Adding BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true to
+    BoardConfig.mk temoporarily.
+     - See b/156534160 for long-term fix which should override this change.
+    
+    Test: Build
+    Bug: 156534160
+    Change-Id: I7d80798d3b2d3818bc835fcede21de2e7ab04735
+
+[33mcommit dacd6c0f3270e866155015f392cd682dd3e46551[m
+Author: minz1 <emerytang@gmail.com>
+Date:   Mon Aug 26 09:42:19 2019 -0500
+
+    veux: overlay: enable burn-in protection
+    
+    Change-Id: I66713222ea83c6ccee39dc49effc36d59546c93f
+
+[33mcommit e563e618709c2382a29c66895cbc8ce025c93344[m
+Author: Erfan Abdi <erfangplus@gmail.com>
+Date:   Sat Dec 25 10:42:25 2021 +0330
+
+    veux: overlay: Add vibration patterns
+    
+    Change-Id: I5447126ffea6a8e8db9ef9d05aa7055f5f050b7b
+
+[33mcommit c7372c01ed29f94826454fd4291906306eed2fd7[m
+Author: Erik Müller <erik.lars.mueller@googlemail.com>
+Date:   Mon Jun 19 21:16:47 2017 +0100
+
+    veux: overlay: Disable proximity sensor check before pulsing
+    
+     * The device's ultrasound proximity sensor is not active
+       during standby, thus it can't be used as a check before
+       pulsing. This fixes Ambient Display.
+    
+    Change-Id: I1fc416247ed13cbfba245f37a4aafeae74ddbff7
+
+[33mcommit 7e293015f40ddde5d194825f0c9cf66a620b50fa[m
+Author: eray orçunus <erayorcunus@gmail.com>
+Date:   Sat Apr 27 23:32:35 2019 +0300
+
+    veux: overlay-lineage: define max number of notification icons
+    
+    Change-Id: I96f218b55426cb5e04e7bc661fe6179d544e97ad
+    Signed-off-by: eray orçunus <erayorcunus@gmail.com>
+
+[33mcommit 4b7dcd38641fe916fa287c4b3362ffe3e3fb00e6[m
+Author: Demon000 <demonsingur@gmail.com>
+Date:   Mon Apr 6 16:24:03 2020 +0200
+
+    veux: overlay-lineage: Disable proximity usage during doze
+    
+    When the proximity sensor is in use, the smp2p_sleepstate
+    IRQ is fired multiple times a second, with each one
+    holding a 200ms wakelock. This is probably a bug in the
+    DSP firmware. To fix this, avoid using the proximity sensor
+    in doze mode, because sleep is preferred to turning off the
+    screen.
+    
+    Change-Id: I5c54643b3d6d6ea4e5f847870a5266bb96342583
+
+[33mcommit 1d3f0e77ce0ee0e0af683540c10da9dab99cf7f7[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Thu Feb 11 11:02:49 2021 +0100
+
+    veux: Initial lineage-sdk overlays
+    
+    Change-Id: I2aaa0c06b23b40aac120c325ce15fb0992463520
+
+[33mcommit 599f5015d80aac6a3dfeb473dac5cdbb0a3364b7[m
+Author: Sebastiano Barezzi <barezzisebastiano@gmail.com>
+Date:   Tue Sep 7 16:08:48 2021 +0200
+
+    veux: Add a script to reorder blobs list
+    
+    Change-Id: I76e85e07f5a562b7e2a3683da264ccebff5c3613
+
+[33mcommit c5909073f5a5c2f63cfe0181e99334eae6549446[m
+Author: Danny Lin <danny@kdrag0n.dev>
+Date:   Mon Nov 2 19:43:49 2020 -0800
+
+    veux: Enable refresh rate toggle in Settings
+    
+    Veux supports switching between 60 and 120 Hz refresh rates, so let's
+    expose it in Settings -> Display -> Smooth Display for users to save
+    battery if necessary.
+    
+    Test: visual confirmation after toggling several times
+    Change-Id: Ie698ec4d4e738afd2a9055dba2369233103a4f13
+
+[33mcommit 68d8f93c9eaaa90c769fd0426c7cf39c89ba5f4f[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Fri Apr 1 14:03:56 2022 +0000
+
+    veux: add libinit for variant handling
+    
+    Change-Id: I89280df82431980c40f415ff2e2862f7fe9eb8a6
+
+[33mcommit dffde4f940ee2e63921435eb838b9cbfe946163f[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Thu Mar 31 20:16:10 2022 +0000
+
+    veux: Allow OTA assert
+    
+    * to support both variants of the device
+    
+    Change-Id: Idbf3d58c306a317ff21636c93c34b1420c714cba
+
+[33mcommit 4215b32349803a34f6a75153c1907c20238e86fa[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Thu Mar 31 20:14:51 2022 +0000
+
+    veux: Allow broken duplicate build rules
+    
+    Change-Id: Icc7f1445a7ef12d1db9c49ddc1800e4476196411
+
+[33mcommit 894bd76713d77502182ba3460a4d84c81ddd27c3[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Thu Mar 31 20:13:44 2022 +0000
+
+    veux: import device specific blobs
+    
+    * From veux-user 11 RKQ1.211001.001 V13.0.10.0.RKCMIXM release-keys
+    
+    Change-Id: Ifd9c2d64cced3ae02554aaf04eb2e2b06d9bb6ff
+
+[33mcommit 7f879dd42c4bd2e7d817285ceec92940724d2395[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Thu Mar 31 20:13:10 2022 +0000
+
+    veux: import power_profile.xml
+    
+    * From veux-user 11 RKQ1.211001.001 V13.0.10.0.RKCMIXM release-keys
+    
+    Change-Id: Ib63bbcc86ee346efa2a12cde6ff27221e893a792
+
+[33mcommit 68b7f2edc54bdc65fd31f883d31266988497f869[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Thu Mar 31 20:13:20 2022 +0000
+
+    veux: import overlays from stock
+    
+    * From veux-user 11 RKQ1.211001.001 V13.0.10.0.RKCMIXM release-keys
+    
+    Change-Id: I0ec4b4487bd41be4d1e60a33b48e24126790898f
+
+[33mcommit fbb9a1ba5fff8c6a3f3ae051ea83ba41f103f124[m
+Author: Ramii Ahmed <ramy@ahmedramy.com>
+Date:   Thu Mar 31 20:12:33 2022 +0000
+
+    veux: Inherit from sm6375-common
+    
+    Change-Id: I7c2239425ded71fa967d983a637564aaaef3b8a9
